@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".UserMenuFragment">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:gravity="center"
+        android:orientation="vertical"
+        android:layout_margin="12dp">
+
+        <TextView
+            android:id="@+id/userMenuWelcomeTextView"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Welcome"
+            android:textAlignment="center"
+            android:textSize="34sp" />
+
+        <Button
+            android:id="@+id/userMenuViewBalanceButton"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="view balance" />
+
+        <Button
+            android:id="@+id/userMenuTransferFundsButton"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="transfer funds" />
+
+        <Button
+            android:id="@+id/userMenuExchangeCalculatorButton"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="calculate exchange" />
+
+        <Button
+            android:id="@+id/userMenuPayBillsButton"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="pay bills" />
+    </LinearLayout>
+</FrameLayout>

@@ -1,0 +1,4 @@
+# Project exclude paths
+/.gradle/
+/Simple Bank Manager/task/build/
+/Simple Bank Manager/task/build/intermediates/javac/debug/classes/
