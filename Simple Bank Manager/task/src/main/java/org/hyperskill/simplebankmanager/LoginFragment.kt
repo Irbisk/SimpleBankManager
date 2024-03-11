@@ -29,6 +29,8 @@ class LoginFragment : Fragment() {
         val usernameIntent = intent.extras?.getString("username") ?: "Lara"
         val passwordIntent = intent.extras?.getString("password") ?: "1234"
         val balance = intent.extras?.getDouble("balance") ?: 100.0
+        val exchangeRate = intent.extras?.getSerializable("exchangeMap")
+        val billMap = intent.extras?.getSerializable("billInfo")
 
         binding.loginButton.setOnClickListener {
             val username = binding.loginUsername.text.toString()
@@ -42,12 +44,12 @@ class LoginFragment : Fragment() {
             bundle.putString("username", username)
             bundle.putString("password", password)
             bundle.putDouble("balance", balance)
+            bundle.putSerializable("exchangeMap", exchangeRate)
+            bundle.putSerializable("billInfo", billMap)
 
             if (loggedIn) {
                 findNavController().navigate(R.id.action_loginFragment_to_userMenuFragment, bundle)
-
             }
-
         }
     }
 

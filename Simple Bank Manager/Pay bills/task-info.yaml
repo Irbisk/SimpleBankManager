@@ -2501,6 +2501,684 @@ files:
           }
       }
     learner_created: false
+  - name: src/main/java/org/hyperskill/simplebankmanager/UserMenuFragment.kt
+    visible: true
+    text: |-
+      package org.hyperskill.simplebankmanager
+      
+      import android.os.Bundle
+      import androidx.fragment.app.Fragment
+      import android.view.LayoutInflater
+      import android.view.View
+      import android.view.ViewGroup
+      import androidx.appcompat.app.AppCompatActivity
+      import androidx.navigation.fragment.findNavController
+      import org.hyperskill.simplebankmanager.databinding.FragmentLoginBinding
+      import org.hyperskill.simplebankmanager.databinding.FragmentUserMenuBinding
+      
+      class UserMenuFragment : Fragment() {
+          lateinit var binding: FragmentUserMenuBinding
+      
+      
+          override fun onCreateView(
+              inflater: LayoutInflater, container: ViewGroup?,
+              savedInstanceState: Bundle?
+          ): View? {
+              // Inflate the layout for this fragment
+              binding = FragmentUserMenuBinding.inflate(inflater)
+              return binding.root
+          }
+      
+      
+          override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+              val bundle = arguments
+              val username = bundle?.getString("username")
+              binding.userMenuWelcomeTextView.text = "Welcome $username"
+      
+      
+      
+              binding.userMenuViewBalanceButton.setOnClickListener {
+                  findNavController().navigate(R.id.action_userMenuFragment_to_viewBalanceFragment, bundle)
+              }
+      
+              binding.userMenuTransferFundsButton.setOnClickListener {
+                  findNavController().navigate(R.id.action_userMenuFragment_to_transferFundsFragment, bundle)
+              }
+      
+              binding.userMenuExchangeCalculatorButton.setOnClickListener {
+                  findNavController().navigate(R.id.action_userMenuFragment_to_calculateExchangeFragment, bundle)
+              }
+      
+          }
+      
+          companion object {
+              @JvmStatic
+              fun newInstance() = UserMenuFragment()
+      
+          }
+      }
+    learner_created: true
+  - name: src/main/res/layout/fragment_user_menu.xml
+    visible: true
+    text: |-
+      <?xml version="1.0" encoding="utf-8"?>
+      <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+          xmlns:tools="http://schemas.android.com/tools"
+          android:layout_width="match_parent"
+          android:layout_height="match_parent"
+          tools:context=".UserMenuFragment">
+      
+          <LinearLayout
+              android:layout_width="match_parent"
+              android:layout_height="match_parent"
+              android:gravity="center"
+              android:orientation="vertical"
+              android:layout_margin="12dp">
+      
+              <TextView
+                  android:id="@+id/userMenuWelcomeTextView"
+                  android:layout_width="match_parent"
+                  android:layout_height="wrap_content"
+                  android:text="Welcome"
+                  android:textAlignment="center"
+                  android:textSize="34sp" />
+      
+              <Button
+                  android:id="@+id/userMenuViewBalanceButton"
+                  android:layout_width="match_parent"
+                  android:layout_height="wrap_content"
+                  android:text="view balance" />
+      
+              <Button
+                  android:id="@+id/userMenuTransferFundsButton"
+                  android:layout_width="match_parent"
+                  android:layout_height="wrap_content"
+                  android:text="transfer funds" />
+      
+              <Button
+                  android:id="@+id/userMenuExchangeCalculatorButton"
+                  android:layout_width="match_parent"
+                  android:layout_height="wrap_content"
+                  android:text="calculate exchange" />
+      
+              <Button
+                  android:id="@+id/userMenuPayBillsButton"
+                  android:layout_width="match_parent"
+                  android:layout_height="wrap_content"
+                  android:text="pay bills" />
+          </LinearLayout>
+      </FrameLayout>
+    learner_created: true
+  - name: src/main/res/layout/fragment_view_balance.xml
+    visible: true
+    text: |-
+      <?xml version="1.0" encoding="utf-8"?>
+      <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+          xmlns:tools="http://schemas.android.com/tools"
+          android:layout_width="match_parent"
+          android:layout_height="match_parent"
+          tools:context=".ViewBalanceFragment">
+      
+          <LinearLayout
+              android:layout_width="match_parent"
+              android:layout_height="match_parent"
+              android:orientation="vertical">
+      
+              <TextView
+                  android:id="@+id/viewBalanceLabelTextView"
+                  android:layout_width="match_parent"
+                  android:layout_height="wrap_content"
+                  android:gravity="center"
+                  android:text="Balance:"
+                  android:textSize="34sp" />
+      
+              <TextView
+                  android:id="@+id/viewBalanceAmountTextView"
+                  android:layout_width="match_parent"
+                  android:layout_height="wrap_content"
+                  android:gravity="center"
+                  android:text="TextView"
+                  android:textSize="34sp" />
+          </LinearLayout>
+      </FrameLayout>
+    learner_created: true
+  - name: src/main/res/layout/fragment_login.xml
+    visible: true
+    text: |-
+      <?xml version="1.0" encoding="utf-8"?>
+      <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+          xmlns:tools="http://schemas.android.com/tools"
+          android:layout_width="match_parent"
+          android:layout_height="match_parent"
+          tools:context=".LoginFragment">
+      
+          <LinearLayout
+              android:layout_margin="8dp"
+              android:layout_width="match_parent"
+              android:layout_height="wrap_content"
+              android:layout_gravity="center"
+              android:orientation="vertical">
+      
+              <EditText
+                  android:id="@+id/loginUsername"
+                  android:layout_width="match_parent"
+                  android:layout_height="wrap_content"
+                  android:ems="10"
+                  android:inputType="textPersonName"
+                  android:hint="@string/username" />
+      
+              <EditText
+                  android:id="@+id/loginPassword"
+                  android:layout_width="match_parent"
+                  android:layout_height="wrap_content"
+                  android:ems="10"
+                  android:inputType="numberPassword"
+                  android:hint="@string/password" />
+      
+              <Button
+                  android:id="@+id/loginButton"
+                  android:layout_width="match_parent"
+                  android:layout_height="wrap_content"
+                  android:text="@string/log_in"/>
+          </LinearLayout>
+      </FrameLayout>
+    learner_created: true
+  - name: src/main/res/layout/fragment_calculate_exchange.xml
+    visible: true
+    text: |-
+      <?xml version="1.0" encoding="utf-8"?>
+      <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+          xmlns:tools="http://schemas.android.com/tools"
+          android:layout_width="match_parent"
+          android:layout_height="match_parent"
+          tools:context=".CalculateExchangeFragment">
+      
+          <LinearLayout
+              android:layout_width="match_parent"
+              android:layout_height="match_parent"
+              android:orientation="vertical"
+              android:gravity="center"
+              android:layout_margin="8dp">
+      
+              <LinearLayout
+                  android:layout_width="match_parent"
+                  android:layout_height="wrap_content"
+                  android:orientation="horizontal"
+                  android:weightSum="100"
+                  >
+      
+                  <TextView
+                      android:id="@+id/calculateExchangeLabelFromTextView"
+                      android:layout_width="match_parent"
+                      android:layout_height="wrap_content"
+                      android:layout_margin="8dp"
+                      android:text="convert from"
+                      android:textSize="24dp"
+                      android:layout_weight="50"/>
+      
+                  <Spinner
+                      android:id="@+id/calculateExchangeFromSpinner"
+                      android:layout_width="match_parent"
+                      android:layout_height="wrap_content"
+                      android:layout_margin="8dp"
+                      android:layout_weight="50"
+                      android:entries="@array/currency"/>
+      
+              </LinearLayout>
+      
+              <LinearLayout
+                  android:layout_width="match_parent"
+                  android:layout_height="wrap_content"
+                  android:orientation="horizontal"
+                  android:weightSum="100">
+      
+                  <TextView
+                      android:id="@+id/calculateExchangeLabelToTextView"
+                      android:layout_width="match_parent"
+                      android:layout_height="wrap_content"
+                      android:layout_margin="8dp"
+                      android:text="convert to"
+                      android:textSize="24dp"
+                      android:layout_weight="50"/>
+      
+                  <Spinner
+                      android:id="@+id/calculateExchangeToSpinner"
+                      android:layout_width="match_parent"
+                      android:layout_height="wrap_content"
+                      android:layout_margin="8dp"
+                      android:layout_weight="50"
+                      android:entries="@array/currency"/>
+              </LinearLayout>
+      
+              <TextView
+                  android:id="@+id/calculateExchangeDisplayTextView"
+                  android:layout_width="match_parent"
+                  android:layout_height="wrap_content"
+                  android:layout_margin="8dp"
+                  android:gravity="center"
+                  android:textSize="24dp" />
+      
+              <EditText
+                  android:id="@+id/calculateExchangeAmountEditText"
+                  android:layout_width="match_parent"
+                  android:layout_height="wrap_content"
+                  android:ems="10"
+                  android:inputType="numberDecimal"
+                  android:layout_margin="8dp"
+                  android:textSize="24dp"
+                  android:gravity="center"
+                  android:hint="Enter amount" />
+      
+              <Button
+                  android:id="@+id/calculateExchangeButton"
+                  android:layout_width="match_parent"
+                  android:layout_height="wrap_content"
+                  android:layout_margin="8dp"
+                  android:text="Calculate" />
+          </LinearLayout>
+      </FrameLayout>
+    learner_created: true
+  - name: src/main/java/org/hyperskill/simplebankmanager/CalculateExchangeFragment.kt
+    visible: true
+    text: |-
+      package org.hyperskill.simplebankmanager
+      
+      import android.os.Bundle
+      import androidx.fragment.app.Fragment
+      import android.view.LayoutInflater
+      import android.view.View
+      import android.view.ViewGroup
+      import android.widget.Adapter
+      import android.widget.AdapterView
+      import android.widget.Toast
+      import org.hyperskill.simplebankmanager.databinding.FragmentCalculateExchangeBinding
+      
+      class CalculateExchangeFragment : Fragment() {
+          lateinit var binding: FragmentCalculateExchangeBinding
+      
+          override fun onCreateView(
+              inflater: LayoutInflater, container: ViewGroup?,
+              savedInstanceState: Bundle?
+          ): View? {
+              binding = FragmentCalculateExchangeBinding.inflate(inflater)
+              return binding.root
+          }
+      
+          override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+              super.onViewCreated(view, savedInstanceState)
+              val bundle = arguments
+              val defaultMap = mapOf(
+                  "EUR" to mapOf(
+                      "GBP" to 0.5,
+                      "USD" to 2.0
+                  ),
+                  "GBP" to mapOf(
+                      "EUR" to 2.0,
+                      "USD" to 4.0
+                  ),
+                  "USD" to mapOf(
+                      "EUR" to 0.5,
+                      "GBP" to 0.25
+                  )
+              )
+      
+              val exchangeRate = bundle?.get("exchangeMap") ?: defaultMap
+      
+              binding.calculateExchangeFromSpinner.onItemSelectedListener = object : AdapterView.OnItemSelectedListener {
+                  override fun onItemSelected(p0: AdapterView<*>?, p1: View?, p2: Int, p3: Long) {
+                      if (p2 == binding.calculateExchangeToSpinner.selectedItemPosition) {
+                          Toast.makeText(context, "Cannot convert to same currency", Toast.LENGTH_SHORT).show()
+                          binding.calculateExchangeToSpinner.setSelection(getSpinnerToSelection())
+                      }
+                  }
+      
+                  override fun onNothingSelected(p0: AdapterView<*>?) {
+                      TODO("Not yet implemented")
+                  }
+      
+              }
+      
+              binding.calculateExchangeToSpinner.onItemSelectedListener = object : AdapterView.OnItemSelectedListener {
+                  override fun onItemSelected(p0: AdapterView<*>?, p1: View?, p2: Int, p3: Long) {
+                      if (p2 == binding.calculateExchangeFromSpinner.selectedItemPosition) {
+                          Toast.makeText(context, "Cannot convert to same currency", Toast.LENGTH_SHORT).show()
+                          p0?.setSelection(getSpinnerToSelection())
+                      }
+                  }
+      
+                  override fun onNothingSelected(p0: AdapterView<*>?) {
+                      TODO("Not yet implemented")
+                  }
+      
+              }
+      
+              binding.calculateExchangeButton.setOnClickListener {
+                  val rateFrom = binding.calculateExchangeFromSpinner.selectedItem.toString()
+                  val rateTo = binding.calculateExchangeToSpinner.selectedItem.toString()
+                  if (binding.calculateExchangeAmountEditText.text.isEmpty()) {
+                      Toast.makeText(context, "Enter amount", Toast.LENGTH_SHORT).show()
+                      binding.calculateExchangeAmountEditText.error = "Enter amount"
+                  } else {
+                      val exchangeRateMap = exchangeRate as Map<String, Map<String, Double>>
+                      binding.calculateExchangeDisplayTextView.text = calculate(exchangeRateMap[rateFrom]?.getValue(rateTo)!!)
+                  }
+              }
+      
+          }
+      
+          fun calculate(rate: Double): String {
+              val amountFrom = binding.calculateExchangeAmountEditText.text.toString().toDouble()
+              val result = amountFrom * rate
+              val symbolFrom = getSymbol(binding.calculateExchangeFromSpinner.selectedItemPosition)
+              val symbolTo = getSymbol(binding.calculateExchangeToSpinner.selectedItemPosition)
+              return String.format("$symbolFrom%.2f = $symbolTo%.2f", amountFrom, result)
+          }
+      
+          fun getSymbol(currencyIndex: Int): String {
+              return when (currencyIndex) {
+                  0 -> "€"
+                  1 -> "£"
+                  else -> "$"
+              }
+          }
+      
+          fun getSpinnerToSelection(): Int {
+              var selection = binding.calculateExchangeToSpinner.selectedItemPosition
+              selection++
+              if (selection == 3) selection = 0
+              return selection
+          }
+      
+          companion object {
+      
+              @JvmStatic
+              fun newInstance() = CalculateExchangeFragment()
+      
+          }
+      }
+    learner_created: true
+  - name: src/main/java/org/hyperskill/simplebankmanager/ViewBalanceFragment.kt
+    visible: true
+    text: |-
+      package org.hyperskill.simplebankmanager
+      
+      import android.os.Bundle
+      import androidx.fragment.app.Fragment
+      import android.view.LayoutInflater
+      import android.view.View
+      import android.view.ViewGroup
+      import androidx.appcompat.app.AppCompatActivity
+      import org.hyperskill.simplebankmanager.databinding.FragmentLoginBinding
+      import org.hyperskill.simplebankmanager.databinding.FragmentViewBalanceBinding
+      
+      class ViewBalanceFragment : Fragment() {
+          lateinit var binding: FragmentViewBalanceBinding
+      
+          override fun onCreateView(
+              inflater: LayoutInflater, container: ViewGroup?,
+              savedInstanceState: Bundle?
+          ): View? {
+              // Inflate the layout for this fragment
+              binding = FragmentViewBalanceBinding.inflate(inflater)
+              return binding.root
+          }
+      
+          override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+              super.onViewCreated(view, savedInstanceState)
+      
+              val balance = arguments?.getDouble("balance")
+      
+              binding.viewBalanceAmountTextView.text = String.format("$%.2f", balance)
+      
+          }
+      
+          companion object {
+      
+              @JvmStatic
+              fun newInstance() = ViewBalanceFragment()
+          }
+      }
+    learner_created: true
+  - name: src/main/java/org/hyperskill/simplebankmanager/LoginFragment.kt
+    visible: true
+    text: |-
+      package org.hyperskill.simplebankmanager
+      
+      import android.content.Context
+      import android.os.Bundle
+      import androidx.fragment.app.Fragment
+      import android.view.LayoutInflater
+      import android.view.View
+      import android.view.ViewGroup
+      import android.widget.Toast
+      import androidx.appcompat.app.AppCompatActivity
+      import androidx.navigation.fragment.findNavController
+      import org.hyperskill.simplebankmanager.databinding.FragmentLoginBinding
+      
+      
+      class LoginFragment : Fragment() {
+          lateinit var binding: FragmentLoginBinding
+      
+          override fun onCreateView(
+              inflater: LayoutInflater, container: ViewGroup?,
+              savedInstanceState: Bundle?
+          ): View? {
+              // Inflate the layout for this fragment
+              binding = FragmentLoginBinding.inflate(inflater)
+              return binding.root
+          }
+      
+          override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+              val intent = (view.context as AppCompatActivity).intent
+              val usernameIntent = intent.extras?.getString("username") ?: "Lara"
+              val passwordIntent = intent.extras?.getString("password") ?: "1234"
+              val balance = intent.extras?.getDouble("balance") ?: 100.0
+              val exchangeRate = intent.extras?.getSerializable("exchangeMap")
+      
+              binding.loginButton.setOnClickListener {
+                  val username = binding.loginUsername.text.toString()
+                  val password = binding.loginPassword.text.toString()
+      
+                  val loggedIn = (username == usernameIntent && passwordIntent == password)
+                  val loggingText = if (loggedIn) "logged in" else "invalid credentials"
+                  Toast.makeText(context, loggingText, Toast.LENGTH_SHORT).show()
+      
+                  val bundle = Bundle()
+                  bundle.putString("username", username)
+                  bundle.putString("password", password)
+                  bundle.putDouble("balance", balance)
+                  bundle.putSerializable("exchangeMap", exchangeRate)
+      
+                  if (loggedIn) {
+                      findNavController().navigate(R.id.action_loginFragment_to_userMenuFragment, bundle)
+      
+                  }
+      
+              }
+          }
+      
+          companion object {
+              @JvmStatic
+              fun newInstance() = LoginFragment()
+          }
+      }
+    learner_created: true
+  - name: src/main/java/org/hyperskill/simplebankmanager/TransferFundsFragment.kt
+    visible: true
+    text: |-
+      package org.hyperskill.simplebankmanager
+      
+      import android.os.Bundle
+      import androidx.fragment.app.Fragment
+      import android.view.LayoutInflater
+      import android.view.View
+      import android.view.ViewGroup
+      import android.widget.Toast
+      import androidx.navigation.fragment.findNavController
+      import org.hyperskill.simplebankmanager.databinding.FragmentTransferFundsBinding
+      
+      class TransferFundsFragment : Fragment() {
+      
+          lateinit var binding: FragmentTransferFundsBinding
+      
+          override fun onCreateView(
+              inflater: LayoutInflater, container: ViewGroup?,
+              savedInstanceState: Bundle?
+          ): View? {
+              // Inflate the layout for this fragment
+              binding = FragmentTransferFundsBinding.inflate(inflater)
+              return binding.root
+          }
+      
+      
+          override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+              super.onViewCreated(view, savedInstanceState)
+              binding.transferFundsButton.setOnClickListener {
+                  buttonAction()
+              }
+      
+          }
+      
+          private fun buttonAction() {
+              val bundle = arguments
+              var error = false
+              if (!binding.transferFundsAccountEditText.text.matches("(ca|sa)\\d{4}".toRegex())) {
+                  binding.transferFundsAccountEditText.error = "Invalid account number"
+                  error = true
+              }
+              val balance = bundle?.get("balance")
+              val amount = binding.transferFundsAmountEditText.text.toString()
+              if (amount.isEmpty() || amount.toDouble() <= 0) {
+                      binding.transferFundsAmountEditText.error = "Invalid amount"
+                  error = true
+              }
+              if (!error) {
+                  if (amount.toDouble() > balance.toString().toDouble()) {
+                      Toast.makeText(
+                          context,
+                          String.format("Not enough funds to transfer $%.2f", amount.toDouble()),
+                          Toast.LENGTH_SHORT)
+                          .show()
+                  } else {
+                      Toast.makeText(
+                          context,
+                          String.format("Transferred $%.2f to account ${binding.transferFundsAccountEditText.text}", amount.toDouble()),
+                          Toast.LENGTH_SHORT)
+                          .show()
+                      bundle?.putDouble("balance", (balance.toString().toDouble() - amount.toDouble()))
+                      findNavController().navigate(R.id.action_transferFundsFragment_to_userMenuFragment, bundle)
+                  }
+      
+              }
+      
+          }
+      
+      
+      }
+    learner_created: true
+  - name: src/main/res/navigation/nav_graph.xml
+    visible: true
+    text: |-
+      <?xml version="1.0" encoding="utf-8"?>
+      <navigation xmlns:android="http://schemas.android.com/apk/res/android"
+          xmlns:app="http://schemas.android.com/apk/res-auto"
+          xmlns:tools="http://schemas.android.com/tools"
+          android:id="@+id/nav_graph"
+          app:startDestination="@id/loginFragment">
+      
+          <fragment
+              android:id="@+id/loginFragment"
+              android:name="org.hyperskill.simplebankmanager.LoginFragment"
+              android:label="fragment_login"
+              tools:layout="@layout/fragment_login" >
+              <action
+                  android:id="@+id/action_loginFragment_to_userMenuFragment"
+                  app:destination="@id/userMenuFragment" />
+          </fragment>
+          <fragment
+              android:id="@+id/userMenuFragment"
+              android:name="org.hyperskill.simplebankmanager.UserMenuFragment"
+              android:label="fragment_user_menu"
+              tools:layout="@layout/fragment_user_menu" >
+              <action
+                  android:id="@+id/action_userMenuFragment_to_viewBalanceFragment"
+                  app:destination="@id/viewBalanceFragment" />
+              <action
+                  android:id="@+id/action_userMenuFragment_to_transferFundsFragment"
+                  app:destination="@id/transferFundsFragment" />
+              <action
+                  android:id="@+id/action_userMenuFragment_to_calculateExchangeFragment"
+                  app:destination="@id/calculateExchangeFragment" />
+          </fragment>
+          <fragment
+              android:id="@+id/viewBalanceFragment"
+              android:name="org.hyperskill.simplebankmanager.ViewBalanceFragment"
+              android:label="fragment_view_balance"
+              tools:layout="@layout/fragment_view_balance" />
+          <fragment
+              android:id="@+id/transferFundsFragment"
+              android:name="org.hyperskill.simplebankmanager.TransferFundsFragment"
+              android:label="fragment_transfer_funds"
+              tools:layout="@layout/fragment_transfer_funds" >
+              <action
+                  android:id="@+id/action_transferFundsFragment_to_userMenuFragment"
+                  app:destination="@id/userMenuFragment" />
+          </fragment>
+          <fragment
+              android:id="@+id/calculateExchangeFragment"
+              android:name="org.hyperskill.simplebankmanager.CalculateExchangeFragment"
+              android:label="fragment_calculate_exchange"
+              tools:layout="@layout/fragment_calculate_exchange" />
+      </navigation>
+    learner_created: true
+  - name: src/main/res/layout/fragment_transfer_funds.xml
+    visible: true
+    text: |-
+      <?xml version="1.0" encoding="utf-8"?>
+      <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+          xmlns:tools="http://schemas.android.com/tools"
+          android:layout_width="match_parent"
+          android:layout_height="match_parent"
+          tools:context=".TransferFundsFragment">
+      
+          <LinearLayout
+              android:layout_width="match_parent"
+              android:layout_height="match_parent"
+              android:orientation="vertical"
+              android:layout_margin="12dp">
+      
+              <EditText
+                  android:id="@+id/transferFundsAccountEditText"
+                  android:layout_width="match_parent"
+                  android:layout_height="wrap_content"
+                  android:inputType="text"
+                  android:hint="Account number" />
+      
+              <EditText
+                  android:id="@+id/transferFundsAmountEditText"
+                  android:layout_width="match_parent"
+                  android:layout_height="wrap_content"
+                  android:inputType="numberDecimal"
+                  android:hint="Enter amount" />
+      
+              <Button
+                  android:id="@+id/transferFundsButton"
+                  android:layout_width="match_parent"
+                  android:layout_height="wrap_content"
+                  android:text="Transfer" />
+          </LinearLayout>
+      </FrameLayout>
+    learner_created: true
+  - name: src/main/res/layout/fragment_pay_bills.xml
+    visible: true
+    learner_created: true
+  - name: src/main/java/org/hyperskill/simplebankmanager/PayBillsFragment.kt
+    visible: true
+    learner_created: true
 feedback_link: https://hyperskill.org/learn/step/27109#comment
-status: Unchecked
+status: Solved
+feedback:
+  message: Well done! You've finished the project. Select a new project on <a href="https://hyperskill.org/projects">Hyperskill</a>
+    to continue learning.
+  time: "Mon, 11 Mar 2024 15:27:33 UTC"
 record: -1

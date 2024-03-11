@@ -5,4 +5,9 @@
     <string name="username">username</string>
     <string name="password">password</string>
     <string name="log_in">log in</string>
+    <string-array name="currency">
+        <item>EUR</item>
+        <item>GBP</item>
+        <item>USD</item>
+    </string-array>
 </resources>

@@ -1,0 +1,91 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".CalculateExchangeFragment">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:gravity="center"
+        android:layout_margin="8dp">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:weightSum="100"
+            >
+
+            <TextView
+                android:id="@+id/calculateExchangeLabelFromTextView"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="8dp"
+                android:text="convert from"
+                android:textSize="24dp"
+                android:layout_weight="50"/>
+
+            <Spinner
+                android:id="@+id/calculateExchangeFromSpinner"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="8dp"
+                android:layout_weight="50"
+                android:entries="@array/currency"/>
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:weightSum="100">
+
+            <TextView
+                android:id="@+id/calculateExchangeLabelToTextView"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="8dp"
+                android:text="convert to"
+                android:textSize="24dp"
+                android:layout_weight="50"/>
+
+            <Spinner
+                android:id="@+id/calculateExchangeToSpinner"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="8dp"
+                android:layout_weight="50"
+                android:entries="@array/currency"/>
+        </LinearLayout>
+
+        <TextView
+            android:id="@+id/calculateExchangeDisplayTextView"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="8dp"
+            android:gravity="center"
+            android:textSize="24dp" />
+
+        <EditText
+            android:id="@+id/calculateExchangeAmountEditText"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:ems="10"
+            android:inputType="numberDecimal"
+            android:layout_margin="8dp"
+            android:textSize="24dp"
+            android:gravity="center"
+            android:hint="Enter amount" />
+
+        <Button
+            android:id="@+id/calculateExchangeButton"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="8dp"
+            android:text="Calculate" />
+    </LinearLayout>
+</FrameLayout>

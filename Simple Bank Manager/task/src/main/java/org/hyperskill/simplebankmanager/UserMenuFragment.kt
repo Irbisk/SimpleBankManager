@@ -39,6 +39,14 @@ class UserMenuFragment : Fragment() {
             findNavController().navigate(R.id.action_userMenuFragment_to_transferFundsFragment, bundle)
         }
 
+        binding.userMenuExchangeCalculatorButton.setOnClickListener {
+            findNavController().navigate(R.id.action_userMenuFragment_to_calculateExchangeFragment, bundle)
+        }
+
+        binding.userMenuPayBillsButton.setOnClickListener {
+            findNavController().navigate(R.id.action_userMenuFragment_to_payBillsFragment, bundle)
+        }
+
     }
 
     companion object {
